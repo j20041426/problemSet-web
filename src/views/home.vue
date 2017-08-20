@@ -11,7 +11,7 @@
         </div>
         <div class="category">
             <div>
-                <mu-icon-button v-link="{path:'category',params:{typeid:1}}">
+                <mu-icon-button to="/category/1">
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-qiye"></use>
                     </svg>
@@ -19,7 +19,7 @@
                 <span>产品使用</span>
             </div>
             <div>
-                <mu-icon-button v-link="{path:'category',params:{typeid:1}}">
+                <mu-icon-button to="/category/2">
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-yuangong"></use>
                     </svg>
@@ -27,7 +27,7 @@
                 <span>售后服务</span>
             </div>
             <div>
-                <mu-icon-button v-link="{path:'category',params:{typeid:1}}">
+                <mu-icon-button to="/category/3">
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-wendang"></use>
                     </svg>
@@ -35,7 +35,7 @@
                 <span>车险知识</span>
             </div>
             <div>
-                <mu-icon-button v-link="{path:'category',params:{typeid:1}}">
+                <mu-icon-button to="/category/4">
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-huibao"></use>
                     </svg>
@@ -43,15 +43,34 @@
                 <span>其他问题</span>
             </div>
         </div>
+        <mu-divider />
         <div class="problem-list">
             <div class="title">常见问题</div>
             <mu-list>
-                <mu-list-item v-for="item in list" :title="item.title" :key="item">
-                    <span class="icon-ask" slot="left">问</span>
-                    <mu-icon slot="right" value="right"/>
-                </mu-list-item>
+                <template v-for="item in cjlist">
+                    <mu-list-item :key="item.zzid" :title="item.bt" titleClass="onerow">
+                        <span class="icon-ask" slot="left">问</span>
+                        <span slot="describe">{{item.hf}}</span>
+                        <mu-icon slot="right" value="chevron_right" />
+                    </mu-list-item>
+                    <mu-divider shallowInset :key="item.zzid" />
+                </template>
             </mu-list>
         </div>
+        <div class="problem-list">
+            <div class="title">最新问题</div>
+            <mu-list>
+                <template v-for="item in zxlist">
+                    <mu-list-item :key="item.zzid" :title="item.bt" titleClass="onerow">
+                        <span class="icon-ask" slot="left">问</span>
+                        <span slot="describe">{{item.hf}}</span>
+                        <mu-icon slot="right" value="chevron_right" />
+                    </mu-list-item>
+                    <mu-divider shallowInset :key="item.zzid" />
+                </template>
+            </mu-list>
+        </div>
+        <mu-float-button icon="headset" class="service" to="/service"/>
     </div>
 </template>
 
@@ -59,12 +78,20 @@
 export default {
     data() {
         return {
-            list: [
-                {zzid: 1, title: '123'},
-                {zzid: 1, title: '123'},
-                {zzid: 1, title: '123'}
-            ]
+            cjlist: [
+                { zzid: 1, bt: '123123123123123123123123123123123123123123', hf: '123123123123123123123123123123123123123123123123' },
+                { zzid: 1, bt: '123', hf: '123123123123123123123' },
+                { zzid: 1, bt: '123', hf: '123123123123123123123' }
+            ],
+            zxlist: [
+                { zzid: 1, bt: '123123123123123123123123123123123123123123', hf: '123123123123123123123123123123123123123123123123' },
+                { zzid: 1, bt: '123', hf: '123123123123123123123' },
+                { zzid: 1, bt: '123', hf: '123123123123123123123' }
+            ],
         }
+    },
+    mounted(){
+        
     }
 }
 </script>
@@ -84,27 +111,35 @@ export default {
 .category {
     display: flex;
     justify-content: space-around;
-}
+    margin-bottom: 10px;
 
-.category>div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-.category>div>span {
-    font-size: 13px;
+        span {
+            font-size: 13px;
+        }
+    }
 }
 
 .problem-list {
     padding: 0 .5rem;
     margin-top: 10px;
 }
+
 .icon-ask {
     padding: 3px 3px 0px 3px;
     font-size: 12px;
     background-color: #ffaf32;
     border-radius: 2px;
     margin: auto;
+}
+
+.service {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
 }
 </style>
