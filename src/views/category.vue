@@ -18,7 +18,7 @@
           </mu-list-item>
           <mu-divider shallowInset :key="item.zzid" />
         </template>
-        <mu-infinite-scroll :scroller="scroller" :loading="loading" @load="loadMore"/>
+        <mu-infinite-scroll :scroller="scroller" :loading="loading" @load="loadMore" />
       </mu-list>
     </div>
     <div v-if="currType === 'shfw'"></div>
@@ -43,7 +43,7 @@ export default {
     handleTabChange(val) {
       this.currType = val
     },
-    loadMore(){
+    loadMore() {
 
     }
   },
