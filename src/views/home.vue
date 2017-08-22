@@ -11,7 +11,7 @@
     </div>
     <div class="category">
       <div>
-        <mu-icon-button to="/category/1">
+        <mu-icon-button to="/category/cpsy">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-qiye"></use>
           </svg>
@@ -19,7 +19,7 @@
         <span>产品使用</span>
       </div>
       <div>
-        <mu-icon-button to="/category/2">
+        <mu-icon-button to="/category/shfw">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-yuangong"></use>
           </svg>
@@ -27,7 +27,7 @@
         <span>售后服务</span>
       </div>
       <div>
-        <mu-icon-button to="/category/3">
+        <mu-icon-button to="/category/cxzs">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-wendang"></use>
           </svg>
@@ -35,7 +35,7 @@
         <span>车险知识</span>
       </div>
       <div>
-        <mu-icon-button to="/category/4">
+        <mu-icon-button to="/category/qtwt">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-huibao"></use>
           </svg>
@@ -44,37 +44,15 @@
       </div>
     </div>
     <mu-divider />
-    <div class="problem-list">
-      <div class="title">常见问题</div>
-      <mu-list>
-        <template v-for="item in cjlist">
-          <mu-list-item :key="item.zzid" :title="item.bt" titleClass="onerow">
-            <span class="icon-ask" slot="left">问</span>
-            <span slot="describe">{{item.hf}}</span>
-            <mu-icon slot="right" value="chevron_right" />
-          </mu-list-item>
-          <mu-divider shallowInset :key="item.zzid" />
-        </template>
-      </mu-list>
-    </div>
-    <div class="problem-list">
-      <div class="title">最新问题</div>
-      <mu-list>
-        <template v-for="item in zxlist">
-          <mu-list-item :key="item.zzid" :title="item.bt" titleClass="onerow">
-            <span class="icon-ask" slot="left">问</span>
-            <span slot="describe">{{item.hf}}</span>
-            <mu-icon slot="right" value="chevron_right" />
-          </mu-list-item>
-          <mu-divider shallowInset :key="item.zzid" />
-        </template>
-      </mu-list>
-    </div>
+    <problem-list title="常见问题"></problem-list>
+    <problem-list title="最新问题"></problem-list>
     <mu-float-button icon="headset" class="service" to="/service" />
   </div>
 </template>
 
 <script>
+import problemList from '@/components/problemList'
+
 export default {
   data() {
     return {
@@ -82,17 +60,13 @@ export default {
         { zzid: 1, bt: '123123123123123123123123123123123123123123', hf: '123123123123123123123123123123123123123123123123' },
         { zzid: 1, bt: '123', hf: '123123123123123123123' },
         { zzid: 1, bt: '123', hf: '123123123123123123123' }
-      ],
-      zxlist: [
-        { zzid: 1, bt: '123123123123123123123123123123123123123123', hf: '123123123123123123123123123123123123123123123123' },
-        { zzid: 1, bt: '123', hf: '123123123123123123123' },
-        { zzid: 1, bt: '123', hf: '123123123123123123123' }
-      ],
+      ]
     }
   },
   mounted() {
 
-  }
+  },
+  components: { 'problem-list': problemList }
 }
 </script>
 
@@ -122,19 +96,6 @@ export default {
       font-size: 13px;
     }
   }
-}
-
-.problem-list {
-  padding: 0 .5rem;
-  margin-top: 10px;
-}
-
-.icon-ask {
-  padding: 3px 3px 0px 3px;
-  font-size: 12px;
-  background-color: #ffaf32;
-  border-radius: 2px;
-  margin: auto;
 }
 
 .service {

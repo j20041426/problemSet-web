@@ -14,7 +14,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/category/:typeid',
+      path: '/category/:typeName',
       name: 'Category',
       component: Category
     },

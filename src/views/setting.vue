@@ -22,11 +22,11 @@ export default {
   data() {
     return {
       themes: [
-        { name: 'DEFAULT', value: def },
-        { name: 'LIGHT', value: light },
-        { name: 'DARK', value: dark },
-        { name: 'CARBON', value: carbon },
-        { name: 'TEAL', value: teal }
+        { name: 'default', value: def },
+        { name: 'light', value: light },
+        { name: 'dark', value: dark },
+        { name: 'carbon', value: carbon },
+        { name: 'teal', value: teal }
       ],
       theme: ''
     }
