@@ -1,15 +1,14 @@
 <template>
-  <div class="problem-list">
-    <div class="title">{{title}}</div>
+  <div class="list-warpper">
     <mu-list>
       <template v-for="item in list">
         <mu-list-item :key="item.zzid" :title="item.bt" titleClass="onerow" :to="`/detail/${item.zzid}`">
           <ask slot="left" />
-          <span slot="describe">{{item.hf}}</span>
           <mu-icon slot="right" value="chevron_right" />
         </mu-list-item>
         <mu-divider shallowInset :key="item.zzid" />
       </template>
+      <mu-infinite-scroll :scroller="scroller" :loading="loading" @load="loadMore" />
     </mu-list>
   </div>
 </template>
@@ -20,24 +19,32 @@ import ask from '@/components/ask'
 export default {
   data() {
     return {
+      loading: false,
       list: []
     }
   },
-  props: ['title', 'type'],
+  methods: {
+    loadMore() {
+      this.loading = true
+      api.getProblemByCategory({ category: this.currType }).then(response => {
+        if (response.status == 200) {
+          this.list = this.list.concat(response.data)
+        }
+        this.loading = false
+      })
+    }
+  },
+  props: ['type', 'scroller'],
   mounted() {
-    api.getProblemByStatus({ type: this.type }).then(response => {
-      if (response.status == 200) {
-        this.list = response.data;
-      }
-    })
+    this.scroller = this.scroller
+    this.loadMore()
   },
   components: { ask }
 }
 </script>
 
 <style lang="scss" scoped>
-.problem-list {
-  padding: 0 .5rem;
-  margin-top: 10px;
+.list-warpper {
+  margin-bottom: 20px;
 }
 </style>

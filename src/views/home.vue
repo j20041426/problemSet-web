@@ -44,8 +44,8 @@
       </div>
     </div>
     <mu-divider />
-    <problem-list title="常见问题"></problem-list>
-    <problem-list title="最新问题"></problem-list>
+    <problem-list title="常见问题" type="cjwt"></problem-list>
+    <problem-list title="最新问题" type="zxwt"></problem-list>
     <mu-float-button icon="headset" class="service" to="/service" />
   </div>
 </template>
@@ -55,13 +55,7 @@ import problemList from '@/components/problemList'
 
 export default {
   data() {
-    return {
-      cjlist: [
-        { zzid: 1, bt: '123123123123123123123123123123123123123123', hf: '123123123123123123123123123123123123123123123123' },
-        { zzid: 1, bt: '123', hf: '123123123123123123123' },
-        { zzid: 1, bt: '123', hf: '123123123123123123123' }
-      ]
-    }
+    return {}
   },
   mounted() {
 

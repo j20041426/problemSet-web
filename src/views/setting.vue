@@ -34,11 +34,11 @@ export default {
   methods: {
     changeTheme(theme) {
       this.theme = theme
-      localStorage.setItem('theme', theme);
+      localStorage.setItem('theme', theme)
       const styleEl = this.getThemeStyle()
       for (let i in this.themes) {
         if (this.themes[i].name === theme) {
-          styleEl.innerHTML = this.themes[i].value || '';
+          styleEl.innerHTML = this.themes[i].value || ''
         }
       }
 
@@ -54,13 +54,13 @@ export default {
     }
   },
   mounted() {
-    var theme = localStorage.getItem('theme');
+    var theme = localStorage.getItem('theme')
     for (let i in this.themes) {
       if (this.themes[i].name === theme) {
         this.theme = theme;
       }
     }
-    this.theme = this.theme || 'DEFAULT';
+    this.theme = this.theme || 'DEFAULT'
   }
 }
 </script>

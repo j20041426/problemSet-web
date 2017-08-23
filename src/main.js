@@ -5,6 +5,12 @@ import App from './App'
 import router from './router'
 import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
+import Mock from '@/mock'
+
+/*
+ * 启用Mockjs模拟接口数据
+ */
+Mock.bootstrap()
 
 Vue.use(MuseUI)
 
